@@ -16083,6 +16083,7 @@ uint32_t CompilerMSL::get_metal_resource_index(SPIRVariable &var, SPIRType::Base
 		remap.second = true;
 		switch (basetype)
 		{
+		case SPIRType::AccelerationStructure:
 		case SPIRType::Image:
 			set_extended_decoration(var.self, resource_decoration, remap.first.msl_texture + plane);
 			return remap.first.msl_texture + plane;
@@ -16151,6 +16152,7 @@ uint32_t CompilerMSL::get_metal_resource_index(SPIRVariable &var, SPIRType::Base
 		// Allocate from plain bindings which are allocated per resource type.
 		switch (basetype)
 		{
+		case SPIRType::AccelerationStructure:
 		case SPIRType::Image:
 			resource_index = next_metal_resource_index_texture;
 			next_metal_resource_index_texture += binding_stride;
@@ -20308,6 +20310,7 @@ void CompilerMSL::analyze_argument_buffers()
 					case SPIRType::Double:
 						add_argument_buffer_padding_buffer_type(buffer_type, member_index, next_arg_buff_index, rez_bind);
 						break;
+					case SPIRType::AccelerationStructure:
 					case SPIRType::Image:
 						add_argument_buffer_padding_image_type(buffer_type, member_index, next_arg_buff_index, rez_bind);
 						break;
