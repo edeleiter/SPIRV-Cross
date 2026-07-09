@@ -104,6 +104,7 @@ void CompilerMSL::add_msl_resource_binding(const MSLResourceBinding &binding)
 			ADD_ARG_IDX_TO_BINDING_NUM_LOOKUP(buffer);
 			break;
 		case SPIRType::Image:
+		case SPIRType::AccelerationStructure:
 			ADD_ARG_IDX_TO_BINDING_NUM_LOOKUP(texture);
 			break;
 		case SPIRType::Sampler:
